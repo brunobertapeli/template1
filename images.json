@@ -1,0 +1,38 @@
+[
+    {
+      "id": "hero-background",
+      "path": "frontend/public/images/hero-bg.jpg",
+      "componentPath": "frontend/src/components/Hero.tsx",
+      "width": 1920,
+      "height": 1080,
+      "description": "Hero section background image",
+      "altText": "Hero background"
+    },
+    {
+      "id": "logo",
+      "path": "frontend/public/images/logo.png",
+      "componentPath": "frontend/src/components/Header.tsx",
+      "width": 200,
+      "height": 50,
+      "description": "Company logo",
+      "altText": "Company logo"
+    },
+    {
+      "id": "feature-icon-1",
+      "path": "frontend/public/images/feature-speed.svg",
+      "componentPath": "frontend/src/components/Features.tsx",
+      "width": 64,
+      "height": 64,
+      "description": "Speed feature icon",
+      "altText": "Fast performance icon"
+    },
+    {
+      "id": "cta-image",
+      "path": "frontend/public/images/cta-mockup.png",
+      "componentPath": "frontend/src/components/CallToAction.tsx",
+      "width": 800,
+      "height": 600,
+      "description": "Call to action product mockup",
+      "altText": "Product mockup"
+    }
+  ]

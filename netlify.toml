@@ -7,14 +7,15 @@
   functions = "netlify/functions"
 
 [dev]
-  # Local dev server port
+  # Local dev server port (BeeSwarm allocates ports 8888-8999 automatically)
+  # Port conflicts are handled with auto-retry
   port = 8888
-  # Frontend framework detection (auto-starts vite)
+  # Frontend framework detection
   framework = "#custom"
-  # Custom command to run frontend dev server
-  command = "cd frontend && npm run dev"
-  # Where frontend dev server runs
-  targetPort = 5173
+  # IMPORTANT: Use npm --prefix instead of cd to keep process running
+  command = "npm --prefix frontend run dev"
+  # Where frontend dev server runs (5174 to avoid conflict with BeeSwarm's port 5173)
+  targetPort = 5174
   # Auto-open browser (BeeSwarm handles this)
   autoLaunch = false
 

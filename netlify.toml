@@ -1,24 +1,25 @@
 [build]
+  # Build command for deployment
   command = "cd frontend && npm install && npm run build"
-  publish = "frontend/build"
+  # Output directory (relative to project root)
+  publish = "frontend/dist"
+  # Functions directory
   functions = "netlify/functions"
 
 [dev]
-  command = "cd frontend && npm start"
-  publish = "frontend/public"
-  port = 3000
-  targetPort = 3000
-  autoLaunch = true
+  # Local dev server port
+  port = 8888
+  # Frontend framework detection (auto-starts vite)
   framework = "#custom"
+  # Custom command to run frontend dev server
+  command = "cd frontend && npm run dev"
+  # Where frontend dev server runs
+  targetPort = 5173
+  # Auto-open browser (BeeSwarm handles this)
+  autoLaunch = false
 
-# Redirect API calls to functions (PROCESS THIS FIRST)
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200 
-
-# Redirects for React Router (Catch-all for client-side routing)
+# Redirect all unknown routes to index.html for SPA routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200 
+  status = 200

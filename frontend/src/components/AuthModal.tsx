@@ -1,13 +1,13 @@
-import React from 'react';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { useAuth } from '../AuthContext';
-import { supabase } from '../supabase';
+import React from 'react'
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { useAuth } from '../AuthContext'
+import { supabase } from '../supabase'
 
 export default function AuthModal() {
-  const { authModalOpen, closeAuthModal } = useAuth();
+  const { authModalOpen, closeAuthModal } = useAuth()
 
-  if (!authModalOpen) return null;
+  if (!authModalOpen) return null
 
   return (
     <div className="auth-modal-overlay">
@@ -35,5 +35,5 @@ export default function AuthModal() {
         </div>
       </div>
     </div>
-  );
-} 
+  )
+}

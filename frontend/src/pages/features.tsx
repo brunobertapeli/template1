@@ -1,19 +1,28 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  CodeBracketIcon, 
-  ServerIcon, 
+import React from 'react'
+import { motion } from 'framer-motion'
+import {
+  CodeBracketIcon,
+  ServerIcon,
   CubeIcon,
   ShieldCheckIcon,
   CreditCardIcon,
-  CloudArrowUpIcon, 
+  CloudArrowUpIcon,
   WrenchScrewdriverIcon,
   CommandLineIcon,
   UserGroupIcon
-} from '@heroicons/react/24/outline';
+} from '@heroicons/react/24/outline'
+
+interface FeatureData {
+  id: string
+  title: string
+  icon: JSX.Element
+  description: string
+  benefits: string[]
+  code: string
+}
 
 // Mock feature data
-const featuresData = [
+const featuresData: FeatureData[] = [
   {
     id: 'react-frontend',
     title: 'React Frontend',
@@ -28,7 +37,7 @@ const featuresData = [
     code: `// Simple component example
 function Counter() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div className="counter">
       <p>Count: {count}</p>
@@ -54,10 +63,10 @@ function Counter() {
 exports.handler = async (event, context) => {
   try {
     const data = JSON.parse(event.body);
-    
+
     // Process data
     const result = await processData(data);
-    
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, data: result })
@@ -86,12 +95,12 @@ const { MongoClient } = require('mongodb');
 
 async function fetchUsers() {
   const client = new MongoClient(process.env.MONGODB_URI);
-  
+
   try {
     await client.connect();
     const database = client.db('myapp');
     const users = database.collection('users');
-    
+
     const query = { status: 'active' };
     return await users.find(query).toArray();
   } finally {
@@ -114,8 +123,8 @@ async function fetchUsers() {
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
-  process.env.REACT_APP_SUPABASE_URL,
-  process.env.REACT_APP_SUPABASE_KEY
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
 // Sign up a new user
@@ -124,7 +133,7 @@ async function signUp(email, password) {
     email,
     password
   });
-  
+
   return { user, error };
 }`
   },
@@ -142,18 +151,18 @@ async function signUp(email, password) {
     code: `// Stripe payment processing example
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
 async function checkout(priceId) {
   const stripe = await stripePromise;
-  
+
   // Call your backend to create the Checkout session
-  const session = await fetch('/create-checkout-session', {
+  const session = await fetch('/.netlify/functions/create-checkout-session', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ priceId })
   }).then(res => res.json());
-  
+
   // Redirect to Checkout
   const result = await stripe.redirectToCheckout({
     sessionId: session.id
@@ -174,20 +183,15 @@ async function checkout(priceId) {
     code: `# netlify.toml configuration
 [build]
   command = "npm run build"
-  publish = "frontend/build"
+  publish = "frontend/dist"
   functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
   status = 200`
   },
-];
+]
 
 export default function Features() {
   return (
@@ -198,14 +202,14 @@ export default function Features() {
       <FeatureComparison />
       <CallToAction />
     </div>
-  );
+  )
 }
 
 function FeaturesHeader() {
   return (
     <section className="features-header">
       <div className="features-header-content">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -213,7 +217,7 @@ function FeaturesHeader() {
         >
           Powerful Features
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -223,11 +227,17 @@ function FeaturesHeader() {
         </motion.p>
       </div>
     </section>
-  );
+  )
+}
+
+interface OverviewFeature {
+  icon: JSX.Element
+  title: string
+  description: string
 }
 
 function FeaturesOverview() {
-  const overviewFeatures = [
+  const overviewFeatures: OverviewFeature[] = [
     {
       icon: <CodeBracketIcon className="overview-icon" />,
       title: 'Modern Frontend',
@@ -258,7 +268,7 @@ function FeaturesOverview() {
       title: 'Billing System',
       description: 'Subscription management with multiple pricing tiers'
     }
-  ];
+  ]
 
   return (
     <section className="features-overview">
@@ -266,7 +276,7 @@ function FeaturesOverview() {
         <h2 className="section-title">At a Glance</h2>
         <div className="overview-grid">
           {overviewFeatures.map((feature, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="overview-card"
               initial={{ opacity: 0, y: 20 }}
@@ -284,7 +294,7 @@ function FeaturesOverview() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function DetailedFeatures() {
@@ -293,10 +303,10 @@ function DetailedFeatures() {
       <div className="container">
         <h2 className="section-title">Core Features</h2>
         <p className="section-subtitle">Dive deeper into what makes React+Node.JS Lite powerful</p>
-        
+
         <div className="detailed-features-list">
-          {featuresData.map((feature, index) => (
-            <motion.div 
+          {featuresData.map((feature) => (
+            <motion.div
               key={feature.id}
               id={feature.id}
               className="feature-detail"
@@ -311,7 +321,7 @@ function DetailedFeatures() {
                 </div>
                 <h3>{feature.title}</h3>
                 <p className="feature-detail-description">{feature.description}</p>
-                
+
                 <h4>Key Benefits</h4>
                 <ul className="feature-benefits">
                   {feature.benefits.map((benefit, i) => (
@@ -319,7 +329,7 @@ function DetailedFeatures() {
                   ))}
                 </ul>
               </div>
-              
+
               <div className="feature-code-block">
                 <div className="code-window">
                   <div className="code-window-header">
@@ -338,7 +348,7 @@ function DetailedFeatures() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function FeatureComparison() {
@@ -347,7 +357,7 @@ function FeatureComparison() {
       <div className="container">
         <h2 className="section-title">Why Choose React+Node.JS Lite</h2>
         <p className="section-subtitle">Compare with alternatives and see why we're the best choice</p>
-        
+
         <div className="comparison-table-wrapper">
           <table className="comparison-table">
             <thead>
@@ -400,7 +410,7 @@ function FeatureComparison() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function CallToAction() {
@@ -417,5 +427,5 @@ function CallToAction() {
         </div>
       </div>
     </section>
-  );
-} 
+  )
+}

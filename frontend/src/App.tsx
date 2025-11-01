@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRightIcon, 
-  CodeBracketIcon, 
-  ServerIcon, 
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import {
+  ArrowRightIcon,
+  CodeBracketIcon,
+  ServerIcon,
   CubeIcon,
   ShieldCheckIcon
-} from '@heroicons/react/24/outline';
+} from '@heroicons/react/24/outline'
 
 // Import pages
-import Features from './pages/features';
-import Pricing from './pages/pricing';
-import Documentation from './pages/documentation';
-import About from './pages/about';
+import Features from './pages/features'
+import Pricing from './pages/pricing'
+import Documentation from './pages/documentation'
+import About from './pages/about'
 
 // Auth components
-import { AuthProvider, useAuth } from './AuthContext';
-import AuthModal from './components/AuthModal';
-import UserDropdown from './components/UserDropdown';
+import { AuthProvider, useAuth } from './AuthContext'
+import AuthModal from './components/AuthModal'
+import UserDropdown from './components/UserDropdown'
 
 function App() {
   return (
@@ -38,10 +38,10 @@ function App() {
         </div>
       </Router>
     </AuthProvider>
-  );
+  )
 }
 
-export default App;
+export default App
 
 function Home() {
   return (
@@ -49,14 +49,14 @@ function Home() {
       <Hero />
       <FeaturesSection />
     </>
-  );
+  )
 }
 
 function AuthButtons() {
-  const { user, openAuthModal } = useAuth();
+  const { user, openAuthModal } = useAuth()
 
   if (user) {
-    return <UserDropdown />;
+    return <UserDropdown />
   }
 
   return (
@@ -64,12 +64,12 @@ function AuthButtons() {
       <button className="btn-secondary" onClick={openAuthModal}>Sign In</button>
       <button className="btn-primary" onClick={openAuthModal}>Sign Up</button>
     </div>
-  );
+  )
 }
 
 function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, openAuthModal, signOut } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, openAuthModal, signOut } = useAuth()
 
   return (
     <header className="navbar">
@@ -78,7 +78,7 @@ function Navbar() {
           <CodeBracketIcon className="icon" />
           <span>React+Node.JS Lite</span>
         </div>
-        
+
         <nav className="desktop-menu">
           <Link to="/">Home</Link>
           <Link to="/features">Features</Link>
@@ -86,10 +86,10 @@ function Navbar() {
           <Link to="/documentation">Documentation</Link>
           <Link to="/about">About</Link>
         </nav>
-        
+
         <AuthButtons />
-        
-        <button 
+
+        <button
           className="mobile-menu-button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -97,7 +97,7 @@ function Navbar() {
           <span></span>
           <span></span>
         </button>
-        
+
         {mobileMenuOpen && (
           <div className="mobile-menu">
             <Link to="/">Home</Link>
@@ -122,14 +122,14 @@ function Navbar() {
         )}
       </div>
     </header>
-  );
+  )
 }
 
 function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -137,8 +137,8 @@ function Hero() {
         >
           Build SaaS Applications Faster
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -146,8 +146,8 @@ function Hero() {
         >
           The ready-to-deploy template with React, Node.js, MongoDB, Supabase Auth, and Stripe payment integration.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -159,8 +159,8 @@ function Hero() {
           <button className="btn-outline btn-large">View Demo</button>
         </motion.div>
       </div>
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
@@ -187,11 +187,17 @@ function Hero() {
         </div>
       </motion.div>
     </section>
-  );
+  )
+}
+
+interface Feature {
+  icon: JSX.Element
+  title: string
+  description: string
 }
 
 function FeaturesSection() {
-  const features = [
+  const features: Feature[] = [
     {
       icon: <CodeBracketIcon className="feature-icon" />,
       title: "React Frontend",
@@ -212,16 +218,16 @@ function FeaturesSection() {
       title: "Supabase Auth",
       description: "Complete authentication system with social login options."
     }
-  ];
+  ]
 
   return (
     <section id="features" className="features">
       <h2 className="section-title">Everything You Need</h2>
       <p className="section-subtitle">All the essential components for your next SaaS project</p>
-      
+
       <div className="features-grid">
         {features.map((feature, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             className="feature-card"
             initial={{ opacity: 0, y: 20 }}
@@ -237,14 +243,14 @@ function FeaturesSection() {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="features-cta-button">
         <Link to="/features" className="btn-primary">
           View All Features
         </Link>
       </div>
     </section>
-  );
+  )
 }
 
 function Footer() {
@@ -255,7 +261,7 @@ function Footer() {
           <CodeBracketIcon className="icon" />
           <span>React+Node.JS Lite</span>
         </div>
-        
+
         <div className="footer-links">
           <div className="footer-column">
             <h4>Product</h4>
@@ -264,14 +270,14 @@ function Footer() {
             <Link to="/pricing">Pricing</Link>
             <Link to="/documentation">Documentation</Link>
           </div>
-          
+
           <div className="footer-column">
             <h4>Resources</h4>
             <a href="#blog">Blog</a>
             <a href="#tutorials">Tutorials</a>
             <a href="#support">Support</a>
           </div>
-          
+
           <div className="footer-column">
             <h4>Company</h4>
             <Link to="/about">About</Link>
@@ -280,10 +286,10 @@ function Footer() {
           </div>
         </div>
       </div>
-      
+
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} React+Node.JS Lite. All rights reserved.</p>
       </div>
     </footer>
-  );
-} 
+  )
+}

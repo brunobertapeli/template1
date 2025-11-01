@@ -12,8 +12,8 @@
   port = 8888
   # Frontend framework detection
   framework = "#custom"
-  # Command to run frontend dev server
-  command = "cd frontend && npm run dev"
+  # IMPORTANT: Use npm --prefix instead of cd to keep process running
+  command = "npm --prefix frontend run dev"
   # BeeSwarm automatically updates this to match allocated Vite port (5174, 5175, 5176, etc.)
   targetPort = 5174
   # Auto-open browser (BeeSwarm handles this)

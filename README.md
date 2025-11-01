@@ -80,4 +80,4 @@ If you're using a MongoDB Atlas cluster, make sure to:
 - Make sure MongoDB connection is allowed from Netlify IPs
 - If functions are failing, test them locally with `netlify dev`
 - Check that all dependencies are correctly installed
-- If you're getting a 404 for function routes, make sure the redirect rules are working properly # template1
+- If you're getting a 404 for function routes, make sure the redirect rules are working properly 

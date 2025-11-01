@@ -1,19 +1,23 @@
 [build]
-  base = "/"
+  command = "cd frontend && npm install && npm run build"
   publish = "frontend/build"
-  command = "npm install && cd frontend && npm install && npm run build && cd ../netlify/functions && npm install"
+  functions = "netlify/functions"
 
-[functions]
-  directory = "netlify/functions"
+[dev]
+  command = "cd frontend && npm start"
+  publish = "frontend/public"
+  port = 3000
+  targetPort = 3000
+  autoLaunch = true
+  framework = "#custom"
 
-[[plugins]]
-  package = "@netlify/plugin-functions-install-core"
-
+# Redirect API calls to functions (PROCESS THIS FIRST)
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
-  status = 200
+  status = 200 
 
+# Redirects for React Router (Catch-all for client-side routing)
 [[redirects]]
   from = "/*"
   to = "/index.html"

@@ -209,6 +209,19 @@ function FeaturesHeader() {
   return (
     <section className="features-header">
       <div className="features-header-content">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}
+        >
+          <img
+            src="/images/features-icon.svg"
+            alt="Features section icon showing multiple feature blocks with checkmarks"
+            data-codedeck-image="true"
+            style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
+          />
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

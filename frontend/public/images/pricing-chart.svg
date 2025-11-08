@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#F9FAFB"/>
+
+  <!-- Chart bars -->
+  <rect x="80" y="180" width="60" height="80" rx="5" fill="#3B82F6" opacity="0.7"/>
+  <rect x="160" y="120" width="60" height="140" rx="5" fill="#10B981" opacity="0.7"/>
+  <rect x="240" y="100" width="60" height="160" rx="5" fill="#8B5CF6" opacity="0.7"/>
+
+  <!-- Axis lines -->
+  <line x1="50" y1="260" x2="330" y2="260" stroke="#6B7280" stroke-width="2"/>
+  <line x1="50" y1="80" x2="50" y2="260" stroke="#6B7280" stroke-width="2"/>
+
+  <!-- Value indicators -->
+  <circle cx="110" cy="140" r="5" fill="#3B82F6"/>
+  <circle cx="190" cy="80" r="5" fill="#10B981"/>
+  <circle cx="270" cy="60" r="5" fill="#8B5CF6"/>
+
+  <!-- Trend line -->
+  <path d="M110 140 Q150 110 190 80 Q230 70 270 60" stroke="#F59E0B" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Labels -->
+  <text x="95" y="280" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">Basic</text>
+  <text x="175" y="280" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">Pro</text>
+  <text x="245" y="280" font-family="Arial, sans-serif" font-size="12" fill="#6B7280">Enterprise</text>
+</svg>

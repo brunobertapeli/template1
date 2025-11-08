@@ -75,8 +75,12 @@ function Navbar() {
     <header className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <CodeBracketIcon className="icon" />
-          <span>React+Node.JS Lite</span>
+          <img
+            src="/images/logo.svg"
+            alt="SwarmBee logo with hexagon bee hive icon"
+            data-codedeck-image="true"
+            style={{ height: '40px', width: 'auto' }}
+          />
         </div>
 
         <nav className="desktop-menu">
@@ -166,7 +170,13 @@ function Hero() {
         transition={{ duration: 0.7 }}
         className="hero-image"
       >
-        <div className="code-window">
+        <img
+          src="/images/hero-illustration.svg"
+          alt="Hero section illustration with geometric shapes and tech elements"
+          data-codedeck-image="true"
+          style={{ maxWidth: '600px', width: '100%', height: 'auto' }}
+        />
+        <div className="code-window" style={{ marginTop: '2rem' }}>
           <div className="code-window-header">
             <div className="window-button red"></div>
             <div className="window-button yellow"></div>
@@ -258,8 +268,12 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-logo">
-          <CodeBracketIcon className="icon" />
-          <span>React+Node.JS Lite</span>
+          <img
+            src="/images/logo.svg"
+            alt="SwarmBee logo with hexagon bee hive icon"
+            data-codedeck-image="true"
+            style={{ height: '40px', width: 'auto' }}
+          />
         </div>
 
         <div className="footer-links">

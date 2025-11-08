@@ -84,7 +84,20 @@ function PricingHeader() {
   return (
     <section className="pricing-header">
       <div className="pricing-header-content">
-        <motion.h1 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}
+        >
+          <img
+            src="/images/pricing-chart.svg"
+            alt="Pricing comparison chart showing growth across tiers"
+            data-codedeck-image="true"
+            style={{ maxWidth: '400px', width: '100%', height: 'auto' }}
+          />
+        </motion.div>
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -92,7 +105,7 @@ function PricingHeader() {
         >
           Simple, Transparent Pricing
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -286,7 +299,11 @@ function PricingTestimonial() {
           </blockquote>
           <div className="testimonial-author">
             <div className="author-avatar">
-              <img src="https://via.placeholder.com/60" alt="Testimonial author" />
+              <img
+                src="/images/testimonial-avatar.svg"
+                alt="Testimonial author"
+                data-codedeck-image="true"
+              />
             </div>
             <div className="author-info">
               <h4>Sarah Johnson</h4>

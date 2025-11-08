@@ -1,0 +1,18 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="30" cy="30" r="28" fill="#3B82F6"/>
+
+  <!-- Hexagon pattern (bee hive inspired) -->
+  <path d="M30 15 L40 20 L40 30 L30 35 L20 30 L20 20 Z" fill="#60A5FA" opacity="0.8"/>
+  <path d="M30 25 L35 27.5 L35 32.5 L30 35 L25 32.5 L25 27.5 Z" fill="#DBEAFE"/>
+
+  <!-- Company Name -->
+  <text x="65" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1F2937">
+    SwarmBee
+  </text>
+
+  <!-- Tagline -->
+  <text x="65" y="48" font-family="Arial, sans-serif" font-size="10" fill="#6B7280">
+    Template Platform
+  </text>
+</svg>

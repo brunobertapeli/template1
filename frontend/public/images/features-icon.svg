@@ -1,0 +1,25 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#F9FAFB"/>
+
+  <!-- Feature blocks -->
+  <rect x="50" y="50" width="100" height="100" rx="10" fill="#3B82F6" opacity="0.2"/>
+  <rect x="170" y="50" width="100" height="100" rx="10" fill="#10B981" opacity="0.2"/>
+  <rect x="290" y="50" width="100" height="100" rx="10" fill="#8B5CF6" opacity="0.2"/>
+
+  <!-- Icons in blocks -->
+  <circle cx="100" cy="100" r="25" fill="#3B82F6"/>
+  <path d="M90 100 L97 107 L110 93" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="205" y="85" width="30" height="30" rx="5" fill="#10B981"/>
+  <circle cx="220" cy="100" r="3" fill="white"/>
+
+  <circle cx="340" cy="100" r="25" fill="#8B5CF6"/>
+  <path d="M330 100 L340 90 L350 100 L340 110 Z" fill="white"/>
+
+  <!-- Bottom section -->
+  <rect x="100" y="180" width="200" height="80" rx="10" fill="#1F2937" opacity="0.1"/>
+  <line x1="130" y1="200" x2="270" y2="200" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="130" y1="220" x2="240" y2="220" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/>
+  <line x1="130" y1="240" x2="260" y2="240" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/>
+</svg>

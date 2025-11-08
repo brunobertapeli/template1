@@ -8,7 +8,20 @@ export default function About() {
       <section className="about-header">
         <div className="container">
           <div className="about-header-content">
-            <motion.h1 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}
+            >
+              <img
+                src="/images/about-team.svg"
+                alt="Team members illustration showing connected team avatars"
+                data-codedeck-image="true"
+                style={{ maxWidth: '500px', width: '100%', height: 'auto' }}
+              />
+            </motion.div>
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -16,7 +29,7 @@ export default function About() {
             >
               About Us
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}

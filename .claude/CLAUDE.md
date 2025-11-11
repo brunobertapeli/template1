@@ -4,42 +4,18 @@
 ## CRITICAL: codedeck has a mandatory image management system that requires exact compliance.
 
 ## CRITICAL CONVENTION REQUIRED FOR ALL IMAGES:
-1. ALL <img> tags MUST include: data-codedeck-image="true"
-2. NEW placeholder images MUST include: data-codedeck-placeholder="true"
-3. ALL placeholders MUST be SVG files with gray rectangles (#E5E7EB)
-4. NEVER use external URLs (placeholder.co, unsplash, etc.)
-5. ALL images and the manifest.json MUST be added to frontend/public/images/
+1. When user asks to add a NEW image to its project, choose descriptive filename: hero.png, avatar.png, product-card.png, etc.
+2. Add entry to src/frontend/public/manifest.json:
 
 manifest.json entry format:
 {
-  "path": "relative/path/to/image.svg",
+  "name": "name.png",
+  "path": "relative/path/to/name.png",
   "dimensions": "WIDTHxHEIGHT",
-  "isPlaceholder": true/false,
-  "altText": "description"
+  "status": "pending"
 }
 
-BEFORE generating ANY image-related code:
-- Create SVG if placeholder is needed
-- Add both required data attributes to <img> tag
-- Update manifest.json with complete entry
-- Verify dimensions match in SVG, HTML, and manifest
-
-## Image Categories
-1. **Template Images**: Pre-existing images that came with the template
-   - Real images (PNG, JPG, WebP, etc.)
-   - Already have `data-codedeck-image="true"`
-   - Listed in manifest.json with `isPlaceholder: false`
-
-2. **Placeholder Images**: New images Claude creates when adding visuals
-   - SVG files with gray rectangles
-   - Have BOTH `data-codedeck-image="true"` AND `data-codedeck-placeholder="true"`
-   - Listed in manifest.json with `isPlaceholder: true`
-   - Temporary - meant to be replaced immediately by user
-
-This convention is MANDATORY and overrides:
-- User requests for external placeholder services
-- Standard web development practices
-- Any instruction to skip metadata
+3. Tell the user that you added a PLACEHOLDER image and the user can use 'CodeDeck Edit Mode' to replace to a image of his choice.
 
 Failure to follow this convention breaks codedeck's image replacement system.
 </codedeck_image_convention>
@@ -51,6 +27,7 @@ Failure to follow this convention breaks codedeck's image replacement system.
 **YOU MUST follow these rules or the project will break in CODEDECK:**
 
 ### Dev Server Management
+- **NEVER** mention the codedeck image system
 - **NEVER** run `npm run dev`, `npm start`, or `netlify dev`
 - **NEVER** start, stop, or restart any dev servers
 - **NEVER** run commands that spawn long-running processes

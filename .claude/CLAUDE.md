@@ -17,10 +17,68 @@ manifest.json entry format:
 
 3. Tell the user that you added a PLACEHOLDER image and the user can use 'CodeDeck Edit Mode' to replace to a image of his choice.
 
+4. If the user ask to resize a picture, claude MUST delete the old picture and add again in the manifest.json
+
 Failure to follow this convention breaks codedeck's image replacement system.
 </codedeck_image_convention>
 
-**COPY THIS FILE to `.claude/CLAUDE.md` in your CODEDECK templates**
+<feedback_loop_for_logs>
+
+## REAL-TIME DEBUGGING CAPABILITIES
+
+CodeDeck provides you with a POWERFUL feedback loop for debugging through automatic log capture. You have access to two critical log files that are updated in REAL TIME:
+
+### Log Files
+- **Frontend logs**: `/codedeck/logs/devtools.md` - Captures all browser console activity
+- **Backend logs**: `/codedeck/logs/backend.md` - Captures all Netlify Function logs
+
+### What Gets Logged Automatically
+
+**Frontend (devtools.md):**
+- 🔵 INFO - console.log, console.info statements
+- 🔴 ERROR - Runtime errors, failed hot reloads, syntax errors
+- ⚪ VERBOSE - Vite connection status, hot module updates
+- All logs include timestamps and source file locations
+
+**Backend (backend.md):**
+- Function invocations and responses
+- Server-side errors
+- API call logs
+
+### How to Use This for Debugging
+
+**Pattern 1: Interactive Debugging (Requires User Interaction)**
+1. Add a console.log with a distinctive emoji or keyword to the code being tested
+   Example: `console.log('🎯 [CHECKOUT] Payment processed:', data)`
+2. Save the file (logs won't appear until user interacts)
+3. Ask the user to test the feature (click button, submit form, etc.)
+4. Read `/codedeck/logs/devtools.md` in your NEXT message to see the results
+
+**Pattern 2: Immediate Error Detection (No User Interaction Needed)**
+1. Make code changes
+2. Run `npm run build` to check for build/syntax errors immediately
+3. OR read `/codedeck/logs/devtools.md` to see hot reload errors that appear instantly
+
+**Pattern 3: Backend Function Debugging**
+1. Add console.log statements in Netlify Functions
+2. Ask user to trigger the function (API call, form submission, etc.)
+3. Read `/codedeck/logs/backend.md` to see server-side execution logs
+
+### Best Practices
+
+✅ **DO:**
+- Use unique emojis/keywords in console.logs for easy identification (🎯, 🚀, 🔍)
+- Check logs after asking user to interact with the app
+- Run `npm run build` to immediately verify code changes compile
+- Read logs proactively when debugging issues
+
+❌ **DON'T:**
+- Expect interactive console.logs to appear before user interaction
+- Forget to check logs - they're your window into runtime behavior
+- Add too many console.logs - be strategic and use unique identifiers
+
+<feedback_loop_for_logs>
+
 
 ## CRITICAL RULES - DO NOT BREAK THESE
 

@@ -1,83 +1,167 @@
 # CODEDECK Template - Instructions
 
 <codedeck_image_convention>
-## CRITICAL: codedeck has a mandatory image management system that requires exact compliance.
+  ## CRITICAL: codedeck has a mandatory image management system that requires exact compliance.
 
-## CRITICAL CONVENTION REQUIRED FOR ALL IMAGES:
-1. When user asks to add a NEW image to its project, choose descriptive filename: hero.png, avatar.png, product-card.png, etc.
-2. Add entry to src/frontend/public/manifest.json:
+  ## CRITICAL CONVENTION REQUIRED FOR ALL IMAGES:
+  1. When user asks to add a NEW image to its project, choose descriptive filename: hero.png, avatar.png, product-card.png, etc.
+  2. Add entry to src/frontend/public/manifest.json:
 
-manifest.json entry format:
-{
+  manifest.json entry format:
+  {
   "name": "name.png",
   "path": "relative/path/to/name.png",
   "dimensions": "WIDTHxHEIGHT",
   "status": "pending"
-}
+  }
 
-3. Tell the user that you added a PLACEHOLDER image and the user can use 'CodeDeck Edit Mode' to replace to a image of his choice.
+  3. Tell the user that you added a PLACEHOLDER image and the user can use 'CodeDeck Edit Mode' to replace to a image of his choice.
 
-4. If the user ask to resize a picture, claude MUST delete the old picture and add again in the manifest.json
+  4. If the user ask to resize a picture, claude MUST delete the old picture and add again in the manifest.json
 
-Failure to follow this convention breaks codedeck's image replacement system.
+  Failure to follow this convention breaks codedeck's image replacement system.
 </codedeck_image_convention>
 
-<feedback_loop_for_logs>
-
-## REAL-TIME DEBUGGING CAPABILITIES
-
-CodeDeck provides you with a POWERFUL feedback loop for debugging through automatic log capture. You have access to two critical log files that are updated in REAL TIME:
-
-### Log Files
-- **Frontend logs**: `/codedeck/logs/devtools.md` - Captures all browser console activity
-- **Backend logs**: `/codedeck/logs/backend.md` - Captures all Netlify Function logs
-
-### What Gets Logged Automatically
-
-**Frontend (devtools.md):**
-- 🔵 INFO - console.log, console.info statements
-- 🔴 ERROR - Runtime errors, failed hot reloads, syntax errors
-- ⚪ VERBOSE - Vite connection status, hot module updates
-- All logs include timestamps and source file locations
-
-**Backend (backend.md):**
-- Function invocations and responses
-- Server-side errors
-- API call logs
-
-### How to Use This for Debugging
-
-**Pattern 1: Interactive Debugging (Requires User Interaction)**
-1. Add a console.log with a distinctive emoji or keyword to the code being tested
-   Example: `console.log('🎯 [CHECKOUT] Payment processed:', data)`
-2. Save the file (logs won't appear until user interacts)
-3. Ask the user to test the feature (click button, submit form, etc.)
-4. Read `/codedeck/logs/devtools.md` in your NEXT message to see the results
-
-**Pattern 2: Immediate Error Detection (No User Interaction Needed)**
-1. Make code changes
-2. Run `npm run build` to check for build/syntax errors immediately
-3. OR read `/codedeck/logs/devtools.md` to see hot reload errors that appear instantly
-
-**Pattern 3: Backend Function Debugging**
-1. Add console.log statements in Netlify Functions
-2. Ask user to trigger the function (API call, form submission, etc.)
-3. Read `/codedeck/logs/backend.md` to see server-side execution logs
-
-### Best Practices
-
-✅ **DO:**
-- Use unique emojis/keywords in console.logs for easy identification (🎯, 🚀, 🔍)
-- Check logs after asking user to interact with the app
-- Run `npm run build` to immediately verify code changes compile
-- Read logs proactively when debugging issues
-
-❌ **DON'T:**
-- Expect interactive console.logs to appear before user interaction
-- Forget to check logs - they're your window into runtime behavior
-- Add too many console.logs - be strategic and use unique identifiers
+ ## 🚀 REAL-TIME DEBUGGING - INSTANT FEEDBACK LOOP
 
 <feedback_loop_for_logs>
+
+ 
+  You have access to TWO log files that provide **INSTANT feedback** as you code:
+
+  ### Log Files (In User's Project)
+  - `codedeck/logs/backend.md` - Dev server, hot reload, build errors, Netlify Function logs
+  - `codedeck/logs/devtools.md` - Browser console output (console.log, errors, warnings)
+
+  ---
+
+  ## ⚡ THE KILLER FEATURE: Instant Error Detection
+
+  **After EVERY file save, hot reload happens automatically. Errors appear INSTANTLY in logs.**
+
+  ### Workflow for Instant Feedback:
+  1. Make code changes
+  2. Save the file
+  3. **IMMEDIATELY read `codedeck/logs/backend.md`** in your next message
+  4. See if hot reload succeeded or if there are errors
+
+  **No user interaction needed! Syntax errors, build errors, type errors all appear instantly.**
+
+  ### Example:
+  ```typescript
+  // You save a file with a typo
+  const user = {
+    namee: 'John'  // typo - should be 'name'
+  }
+
+  backend.md will instantly show:
+  [vite] error: Property 'namee' does not exist on type...
+
+  You can fix it immediately without asking the user to test!
+
+  ---
+  📋 What Gets Logged
+
+  Backend Logs (backend.md) - INSTANT FEEDBACK
+
+  ✅ Hot reload success/failure (instant)
+  ✅ TypeScript errors (instant)
+  ✅ Build errors (instant)
+  ✅ Vite HMR updates (instant)
+  ✅ Netlify Function invocations (when user triggers)
+  ✅ Server-side console.logs (when function runs)
+
+  Frontend Logs (devtools.md) - REQUIRES USER INTERACTION
+
+  ⚠️ Runtime console.log statements (only when code executes)
+  ⚠️ Runtime errors (only when code executes)
+  ⚠️ User interactions (clicks, form submissions, etc.)
+
+  ---
+  🎯 Three Debugging Patterns
+
+  Pattern 1: Instant Syntax/Build Verification (NO USER INTERACTION)
+
+  Use this ALWAYS after making changes
+
+  1. Make code changes
+  2. Save files
+  3. Read codedeck/logs/backend.md in next message
+  4. Check for hot reload errors
+  5. If errors found: fix immediately and repeat
+
+  Example:
+  You: *saves file with changes*
+  You: Let me check if the code compiled successfully...
+  You: *reads codedeck/logs/backend.md*
+  You: *sees "✓ vite build successful"*
+  You: Great! The code compiled without errors.
+
+  Pattern 2: Runtime Debugging (REQUIRES USER INTERACTION)
+
+  Use when you need to see if code RUNS correctly
+
+  1. Add strategic console.log with unique identifier:
+  console.log('🎯 [CHECKOUT] Step 1: User data:', userData)
+  console.log('🎯 [CHECKOUT] Step 2: Payment processing...')
+  2. Ask user to interact with the feature
+  3. Read codedeck/logs/devtools.md to see execution flow
+  4. Debug based on what you find
+
+  Example:
+  You: I've added some debug logs. Can you click the "Checkout" button?
+  User: *clicks button*
+  You: *reads codedeck/logs/devtools.md*
+  You: *sees logs showing where the code failed*
+  You: I found the issue - the payment data wasn't being validated correctly.
+
+  Pattern 3: Backend Function Debugging (REQUIRES USER INTERACTION)
+
+  Use for Netlify Function errors
+
+  1. Add console.log in function
+  2. Ask user to trigger the function (API call, form submit)
+  3. Read codedeck/logs/backend.md to see function execution
+
+  ---
+  💡 Best Practices
+
+  DO:
+
+  ✅ Read codedeck/logs/backend.md after every set of changes to verify hot reload succeeded
+  ✅ Use unique emojis in console.logs for easy identification (🎯, 🚀, 🔍, ✨)
+  ✅ Check logs BEFORE asking user to test
+  ✅ Use Pattern 1 (instant feedback) whenever possible - it's FREE verification!
+  ✅ Keep console.logs strategic - use them to track execution flow
+
+  DON'T:
+
+  ❌ Forget to check logs after saving - you're missing instant feedback!
+  ❌ Expect console.logs to appear without user interaction
+  ❌ Add console.logs and immediately check - code hasn't run yet!
+  ❌ Spam too many console.logs - be strategic
+  ❌ Use console.logs that are too verbose. Instead, trim them down via code.
+
+  ---
+  🔄 Complete Debugging Workflow
+
+  Every Code Change:
+
+  1. Make changes
+  2. Save files
+  3. Check codedeck/logs/backend.md for hot reload status
+  4. If errors: fix and repeat
+  5. If success: move to next task
+
+  Testing Runtime Behavior:
+
+  1. Add strategic console.logs with emojis
+  2. Save files
+  3. Check backend.md for hot reload success
+  4. Ask user to interact with feature
+  5. Check devtools.md or backend.md for runtime logs
+  6. Debug based on findings
+</feedback_loop_for_logs>
 
 
 ## CRITICAL RULES - DO NOT BREAK THESE

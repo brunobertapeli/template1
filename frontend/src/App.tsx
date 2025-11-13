@@ -176,25 +176,6 @@ function Hero() {
           data-codedeck-image="true"
           style={{ maxWidth: '600px', width: '100%', height: 'auto' }}
         />
-        <div className="code-window" style={{ marginTop: '2rem' }}>
-          <div className="code-window-header">
-            <div className="window-button red"></div>
-            <div className="window-button yellow"></div>
-            <div className="window-button green"></div>
-          </div>
-          <div className="code-content">
-            <pre>{`function App() {
-  return (
-    <SaaSTemplate
-      auth={supabaseAuth}
-      payments={stripeIntegration}
-      database={mongoDB}
-      deployment="netlify"
-    />
-  );
-}`}</pre>
-          </div>
-        </div>
       </motion.div>
     </section>
   )
